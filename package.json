@@ -1,11 +1,32 @@
 {
-  "name": "alpass",
+  "name": "al-pass-encr-decr",
   "version": "1.0.0",
-  "description": "",
+  "description": "LAL-password-encryption-decryption",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "chandan.kumar@acelucid.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.6.2",
+    "typescript": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chandankumar14/AL-pass-encr-decr"
+  },
+  "keywords": [
+    "passsword",
+    "Encryption",
+    "Decryption"
+  ],
+  "bugs": {
+    "url": "https://github.com/chandankumar14/AL-pass-encr-decr/issues"
+  },
+  "homepage": "https://github.com/chandankumar14/AL-pass-encr-decr/blob/master/README.md",
+  "files": [
+    "lib/**/*"
+  ]
 }
