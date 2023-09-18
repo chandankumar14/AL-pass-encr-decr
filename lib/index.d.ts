@@ -1,4 +1,3 @@
-import { ENCRYPTION_PASSWORD, PASSWORD, VERIFY_PASSWORD } from "./model";
-export declare function ALPassWordEncrytpion(payload: PASSWORD): string;
-export declare function ALPassWordDecrytpion(payload: ENCRYPTION_PASSWORD): any;
-export declare function ALVerifyPassWord(payload: VERIFY_PASSWORD): true | undefined;
+export declare function ALPassWordEncrytpion<Types>(password: Types, secret_key: Types, secret_init_vector_key: Types, init_vector: Types, init_vector_key: Types): string;
+export declare function ALPassWordDecrytpion<Types>(encrypted_password: Types | any, secret_key: Types, secret_init_vector_key: Types, init_vector: Types, init_vector_key: Types): string;
+export declare function ALVerifyPassWord<Types>(encrypted_pass: Types, secret_key: Types, secret_init_vector_key: Types, init_vector: Types, password: Types, init_vector_key: Types): true | undefined;

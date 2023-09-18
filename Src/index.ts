@@ -1,16 +1,20 @@
-import { ENCRYPTION_PASSWORD, PASSWORD, VERIFY_PASSWORD } from "./model";
 const crypto = require("crypto");
-
- export function ALPassWordEncrytpion(payload: PASSWORD) {
+export function ALPassWordEncrytpion<Types>(
+  password: Types,
+  secret_key: Types,
+  secret_init_vector_key: Types,
+  init_vector: Types,
+  init_vector_key: Types
+): string {
   const algorithm = "aes-256-cbc";
   const security_key = crypto
-    .createHmac("sha256", payload.secret_init_vector)
-    .update(payload.secret_key)
+    .createHmac("sha256", secret_init_vector_key)
+    .update(secret_key)
     .digest("base64url")
     .substring(0, 32);
   const secret_init_vector = crypto
-    .createHmac("sha256", payload.secret_init_vector)
-    .update(payload.secret_key)
+    .createHmac("sha256", init_vector)
+    .update(init_vector_key)
     .digest("base64url")
     .substring(0, 16);
 
@@ -20,24 +24,29 @@ const crypto = require("crypto");
     secret_init_vector
   );
   return Buffer.from(
-    cipher.update(payload.password, "utf8", "hex") + cipher.final("hex")
+    cipher.update(password, "utf8", "hex") + cipher.final("hex")
   ).toString("base64"); // Encrypts data and converts to hex and base64
 }
 
-
- export function ALPassWordDecrytpion(payload: ENCRYPTION_PASSWORD) {
+export function ALPassWordDecrytpion<Types>(
+  encrypted_password: Types | any,
+  secret_key: Types,
+  secret_init_vector_key: Types,
+  init_vector: Types,
+  init_vector_key: Types
+): string {
   const algorithm = "aes-256-cbc";
   const security_key = crypto
-    .createHmac("sha256", payload.secret_init_vector)
-    .update(payload.secret_key)
+    .createHmac("sha256", secret_init_vector_key)
+    .update(secret_key)
     .digest("base64url")
     .substring(0, 32);
   const secret_init_vector = crypto
-    .createHmac("sha256", payload.secret_init_vector)
-    .update(payload.secret_key)
+    .createHmac("sha256", init_vector)
+    .update(init_vector_key)
     .digest("base64url")
     .substring(0, 16);
-  const buff = Buffer.from(payload.encrypted_password, "base64");
+  const buff = Buffer.from(encrypted_password, "base64");
   const decipher = crypto.createDecipheriv(
     algorithm,
     security_key,
@@ -49,16 +58,23 @@ const crypto = require("crypto");
   );
 }
 
-  export function ALVerifyPassWord(payload: VERIFY_PASSWORD) {
+export function ALVerifyPassWord<Types>(
+  encrypted_pass: Types,
+  secret_key: Types,
+  secret_init_vector_key: Types,
+  init_vector: Types,
+  password: Types,
+  init_vector_key: Types
+) {
   const algorithm = "aes-256-cbc";
   const security_key = crypto
-    .createHmac("sha256", payload.secret_init_vector)
-    .update(payload.secret_key)
+    .createHmac("sha256", secret_init_vector_key)
+    .update(secret_key)
     .digest("base64url")
     .substring(0, 32);
   const secret_init_vector = crypto
-    .createHmac("sha256", payload.secret_init_vector)
-    .update(payload.secret_key)
+    .createHmac("sha256", init_vector)
+    .update(init_vector_key)
     .digest("base64url")
     .substring(0, 16);
 
@@ -68,10 +84,9 @@ const crypto = require("crypto");
     secret_init_vector
   );
   const encrypted_password = Buffer.from(
-    cipher.update(payload.password, "utf8", "hex") + cipher.final("hex")
+    cipher.update(password, "utf8", "hex") + cipher.final("hex")
   ).toString("base64"); // Encrypts data and converts to hex and base64
-  if (payload.encrypted_password === encrypted_password) {
+  if (encrypted_pass === encrypted_password) {
     return true;
   }
 }
-
