@@ -1,8 +1,9 @@
 {
   "name": "al-pass-encr-decr",
   "version": "1.0.0",
-  "description": "LAL-password-encryption-decryption",
-  "main": "index.js",
+  "description": "AL-password-encryption-decryption",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
@@ -20,7 +21,13 @@
   "keywords": [
     "passsword",
     "Encryption",
-    "Decryption"
+    "Decryption",
+    "encrypt",
+    "decrypt",
+    "encrypt-passsword",
+    "decrypt-passsword",
+    "passsword-encryption",
+    "password-decryption"
   ],
   "bugs": {
     "url": "https://github.com/chandankumar14/AL-pass-encr-decr/issues"
