@@ -1,6 +1,6 @@
 {
   "name": "al-pass-encr-decr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AL-password-encryption-decryption",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
